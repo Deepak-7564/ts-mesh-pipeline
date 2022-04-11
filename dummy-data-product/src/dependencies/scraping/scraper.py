@@ -159,7 +159,7 @@ def images_scraper():
 def map_scraper():
     data_info = pd.read_excel(r"output\data_info.xlsx")
 
-    data_info = pd.DataFrame(data_info)
+    data_info = pd.DataFrame(data=data_info, dtype=object)
     
     # Map with Land Surface Temperature 
 
@@ -184,10 +184,7 @@ def map_scraper():
 
     Map = geemap.Map()
     Map.setCenter(data_info.longitude[0],  data_info.latitude[0], 4)
-    Map.addLayer(
-        landSurfaceTemperature, landSurfaceTemperatureVis,
-        'Land Surface Temperature')
-
+    Map.addLayer(landSurfaceTemperature, landSurfaceTemperatureVis,'Land Surface Temperature')
     Map.addLayer(US_Border);
     Map.save(r'output\my_lc_interactive_map.html')
             
